@@ -1,0 +1,114 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background:linear-gradient(90deg, #F7EBE8 50%, #E3E3E3 50%);
+    color:#333745;
+    height:100vh;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    height:500px;
+    width:550px;
+    border:2px solid gray;
+    box-shadow: 0px 1px 1px 1px #cdcdda;
+    padding:20px;
+    background-color:whitesmoke;
+    border-radius:5px;
+}
+h1{
+    text-align:center;
+}
+img{
+    height:80px;
+    width:80px;
+    border:1px solid red;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 2;
+    border-radius:20px;
+    margin-top:10px;
+}
+
+.upload{
+    position: relative;
+    max-width: 200px;
+    margin: 3px auto;
+}
+
+.edit{
+    position: absolute;
+    right: 12px;
+    z-index: 1;
+    top: 10px; 
+}
+
+.file{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:10px;
+}
+
+
+input{
+    display: none;
+}
+
+input + label{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    background: #c49494;
+    border: 1px solid transparent;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all .2s ease-in-out;
+}
+ 
+.preview{
+    width: 192px;
+    height: 192px;
+    position: relative;
+    border-radius: 100%;
+    border: 6px solid #F8F8F8;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    background-color:lightsteelblue;
+}
+
+.preview > div{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.gallery-item{
+    height:80px;
+    width:80px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius:10%;
+  } 
+
+  h2{
+      text-transform: uppercase;
+      text-align: center;
+  }
