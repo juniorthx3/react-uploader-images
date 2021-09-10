@@ -15,3 +15,4 @@ const ImageHandler = ({selectedImage, setSelectedImage}) => {
 }
 
 export default ImageHandler
+
