@@ -1,29 +1,30 @@
 const express=require("express");
-const router=express.Router()
-// const { PhotosModel }=require("../models/photosModel");
+const router=express.Router();
+const { Photos }=require("../models/photosModel");
 
 router.get("/", (req, res, next)=>{
-    res.status(200).json({
-        message:"data of pictures loaded will appear here"
-    });
+    Photos.find((err, data)=>{
+       if(err){
+          console.log("No Data", err);
+       }else{
+         res.send(data);
+       }
+    })
 });
 
-router.post("/", (req, res, next)=>{
-    const picture={
-        name:req.body.name,
-        width:req.body.width,
-        height:req.body.height
-    }
-    res.status(200).json({
-        message:"Uploading a new Image",
-        uploadPicture:picture
+router.post("/", (req, res)=>{
+    const record=new Photos({
+        filename: req.body.filename,
+        size:req.body.size,
+        created_at:req.body.created_at
+    })
+    record.save((err, data)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.send(data)
+        }
     })
 })
-
-router.get('/:id', (req, res, next)=>{
-    const id=req.params.catId;
-    res.status(200).json({message:"You required uploaded pictures data", id:id})
-})
-
 
 module.exports = router

@@ -1,10 +1,13 @@
 const mongoose=require("mongoose");
 
-const PhotosModel=mongoose.model({
-   _id:String,
+const {Schema}=mongoose;
+
+const photoSchema=new Schema({
    filename: {type:String, required:true},
-   size:{type:Number, required:true},
+   size:{type:String, required:true},
    created_at:{type:Date, default:Date.now}
 })
 
-module.exports={ PhotosModel }
+const Photos=mongoose.model("Photo", photoSchema);
+
+module.exports={ Photos }

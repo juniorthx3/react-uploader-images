@@ -2,13 +2,13 @@ import React from 'react'
 
 const Uploader = ({selectedImage, setSelectedImage}) => {
     const uploadImage=e=>{
-        // const reader=new FileReader();
-        // reader.onload=()=>{
-        //     if(reader.readyState === 2){
-        //         setSelectedImage(reader.result);
-        //     }
-        // }
-        // reader.readAsDataURL(e.target.files[0])
+        const reader=new FileReader();
+        reader.onload=()=>{
+            if(reader.readyState === 2){
+                setSelectedImage(reader.result);
+            }
+        }
+        reader.readAsDataURL(e.target.files[0])
         console.log(e.target.files[0]);
         
     }
