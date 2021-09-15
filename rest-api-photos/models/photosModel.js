@@ -3,9 +3,9 @@ const mongoose=require("mongoose");
 const {Schema}=mongoose;
 
 const photoSchema=new Schema({
-   filename: {type:String, required:true},
-   size:{type:String, required:true},
-   created_at:{type:Date, default:Date.now}
+   filename:String,
+   desc:String,
+   img:{data:Buffer, contentType:String}
 })
 
 const Photos=mongoose.model("Photo", photoSchema);
