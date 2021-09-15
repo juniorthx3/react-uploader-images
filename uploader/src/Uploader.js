@@ -19,7 +19,7 @@ const Uploader = ({selectedImage, setSelectedImage}) => {
                 <label htmlFor="imageUpload"></label>
             </div>
             <div className="preview">
-                <img src={selectedImage} id="imagePreview" width="250" height="250" alt="" />
+                <img src={selectedImage} name="photoImage" id="imagePreview" width="250" height="250" alt="" />
             </div>
         </div>
     )
