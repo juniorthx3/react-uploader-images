@@ -3,8 +3,6 @@ import ImageHandler from './ImageHandler'
 import cat from "./img/cat.jpg"
 import "./style.css"
 
-
-
 const App = () => {
     const [selectedImage, setSelectedImage] = useState(cat)
     const [preview, setPreview] = useState("")

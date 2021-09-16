@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 
 const Uploader = ({selectedImage, setSelectedImage}) => {
+    
     const uploadImage=e=>{
         const reader=new FileReader();
         reader.onload=()=>{
@@ -9,9 +11,17 @@ const Uploader = ({selectedImage, setSelectedImage}) => {
             }
         }
         reader.readAsDataURL(e.target.files[0])
-        console.log(e.target.files[0]);
-        
+        // console.log(e.target.files[0]);
+        setSelectedImage(e.target.files[0])
+    } 
+
+    const processUploadFile=()=>{
+        const fd=new FormData();
+        fd.append('image', selectedImage);
+        axios.post('http://localhost:4000/pictures')
+             .then(response=>console.log(response))
     }
+
     return (
         <div className="upload">
              <div className="edit">

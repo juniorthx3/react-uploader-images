@@ -5,10 +5,11 @@ const multer=require("multer");
 
 const storage=multer.diskStorage({
     destination:function(request, file, callback){
-        callback(null, './uploads');
+        callback(null, 'uploads/');
     },
     filename:function(request, file, callback){
-        callback(null, Date.now() + file.originalname);
+        const dateStr = new Date().toISOString().replace(/:/g, '-');
+        callback(null, dateStr + '-' + file.originalname);
     },
 });
 
@@ -40,9 +41,11 @@ router.get("/", (req, res, next)=>{
 router.post("/", upload.single('photoImage'), (req, res)=>{
     console.log(req.file);
     const record=new Photos({
-        filename: req.body.filename,
-        desc:req.body.desc,
-        photoImage: req.file.path
+        filename: req.file.filename,
+        path: req.file.path,
+        mimetype:req.file.mimetype,
+        encoding:req.file.encoding,
+        size:req.file.size
     })
     record.save((err, data)=>{
         if(err){
