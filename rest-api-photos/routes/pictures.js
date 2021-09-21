@@ -40,6 +40,7 @@ router.get("/", (req, res, next)=>{
 
 router.post("/", upload.single('photoImage'), (req, res)=>{
     console.log(req.file);
+    if(req.file=== undefined) return res.send("Séelectionner une photo")
     const record=new Photos({
         filename: req.file.filename,
         path: req.file.path,

@@ -4,15 +4,11 @@ import cat from "./img/cat.jpg"
 import "./style.css"
 
 const App = () => {
-    const [selectedImage, setSelectedImage] = useState(cat)
-    const [preview, setPreview] = useState("")
+    const [selectedImage, setSelectedImage] = useState(cat);
+
     return (
         <React.Fragment>
-            <ImageHandler selectedImage={selectedImage} 
-                          setSelectedImage={setSelectedImage} 
-                          preview={preview}
-                          setPreview={setPreview}
-            />
+            <ImageHandler selectedImage={selectedImage} setSelectedImage={setSelectedImage} />
         </React.Fragment>
     )
 }
