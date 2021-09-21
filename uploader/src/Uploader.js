@@ -20,8 +20,8 @@ const Uploader = ({selectedImage, setSelectedImage}) => {
         formData.append('photoImage', e.target.files[0]);
 
         axios.post('http://localhost:4000/pictures', formData, {
-            onUploadProgress:progressEvent=>{
-                console.log("Upload Progress: " + Math.round(progressEvent.onload / progressEvent.total * 1000) + '%');
+            onUploadProgress: progressEvent=>{
+                console.log("Upload Progress: " + Math.round(progressEvent.loaded / progressEvent.total * 100) + '%');
             }
           })
             .then(response=>console.log(response));

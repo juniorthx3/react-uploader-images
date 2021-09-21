@@ -9,7 +9,7 @@ const ImageHandler = ({selectedImage, setSelectedImage}) => {
             <Uploader selectedImage={selectedImage} 
                       setSelectedImage={setSelectedImage} 
             />
-            <Gallery title="UPLOADED IMAGES" />
+            <Gallery title="UPLOADED IMAGES" selectedImage={selectedImage} />
         </div>
     )
 }
