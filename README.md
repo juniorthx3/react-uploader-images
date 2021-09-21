@@ -30,17 +30,17 @@ cd uploader
 npm install
 ```
 
-## Publication des changements apportés au projet
+## Publication of changes in the project
 
-Pour publier les changements locaux et les charger sur github, utiliser la commande suivante dans le repertoire racine
+To publish local changes and upload them to github, use the following command in the root directory
 ```
 git push
 ```
 
-## Apercu de quelque pages du projet
+# PROJECT OVERVIEW
 
 ## BACK END VIEW
 ![Project pic](api.PNG)
 
-## FROND END VIEW
+## FRONT END VIEW
 ![Project pic](frondend.PNG)
