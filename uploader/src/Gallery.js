@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
+
 const Gallery = ({title, selectedImage}) => {
   const [image, setImage] = useState([]);
   useEffect(()=>{
@@ -13,18 +14,18 @@ const Gallery = ({title, selectedImage}) => {
       <React.Fragment>
             <h1>{title}</h1>
             <div className="gallery">
-              {/* {
-                image.map(imaj=>{
-                  <div className="gallery-item"><img src={imaj.path} alt="" /></div>
+              {
+                image.map(photo=>{
+                  return <div className="gallery-item" key={photo._id}><img src={photo.url} alt="" /></div>
                 })
-              } */}
+              }
+                {/* <div className="gallery-item"></div>
                 <div className="gallery-item"></div>
                 <div className="gallery-item"></div>
                 <div className="gallery-item"></div>
                 <div className="gallery-item"></div>
-                <div className="gallery-item"></div>
-                <div className="gallery-item"></div>
-        </div>
+                <div className="gallery-item"></div> */}
+           </div>
       </React.Fragment>
     )
 }

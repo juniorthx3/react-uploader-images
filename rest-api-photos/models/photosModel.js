@@ -5,7 +5,7 @@ const {Schema}=mongoose;
 const photoSchema=new Schema({
    filename:{type:String, default:"Nouvelle Photo"},
    mimetype:{type:String, required:true},
-   path:{type:String, required:true},
+   url:{type:String, required:true},
    size:Number,
    encoding:String,
    dateUpload:{type:Date, default:()=>Date.now()}

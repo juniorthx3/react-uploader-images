@@ -5,7 +5,7 @@ import Uploader from './Uploader'
 const ImageHandler = ({selectedImage, setSelectedImage}) => {
     return (
         <div className="container">
-            <Gallery title="GRUD IMAGES" />
+            {/* <Gallerys title="GRUD IMAGES" /> */}
             <Uploader selectedImage={selectedImage} 
                       setSelectedImage={setSelectedImage} 
             />

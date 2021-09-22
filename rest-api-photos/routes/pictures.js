@@ -28,7 +28,7 @@ const upload=multer({
 });  
 
 
-router.get("/", (req, res, next)=>{
+router.get("/", (req, res)=>{
     Photos.find((err, data)=>{
        if(err){
           console.log(err);
@@ -43,7 +43,7 @@ router.post("/", upload.single('photoImage'), (req, res)=>{
     if(req.file=== undefined) return res.send("Séelectionner une photo")
     const record=new Photos({
         filename: req.file.filename,
-        path: req.file.path,
+        url: "http://localhost:4000/pictures/uploads/" + req.file.filename,
         mimetype:req.file.mimetype,
         encoding:req.file.encoding,
         size:req.file.size
@@ -55,6 +55,28 @@ router.post("/", upload.single('photoImage'), (req, res)=>{
             res.send(data)
         }
     })
+})
+
+router.get("/:id", (req, res)=>{
+    const {id}=req.params;
+    Photos.findById(id, (err, data)=>{
+        if(err){
+            console.log(err);
+        }else{
+            res.send(data);
+        }
+    })
+})
+
+router.get("/uploads/:filename", (req, res)=>{
+    const {filename}=req.params;
+    Photos.findOne({filename:filename},(err, data)=>{
+        if(err){
+           console.log(err);
+        }else{
+          res.send(data);
+        }
+     })
 })
 
 module.exports = router
