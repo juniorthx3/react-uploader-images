@@ -10,32 +10,72 @@ body{
     color:#333745;
     height:100vh;
     display:flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
 .container{
-    height:500px;
-    width:550px;
     border:2px solid gray;
     box-shadow: 0px 1px 1px 1px #cdcdda;
-    padding:20px;
+    padding:10px;
     background-color:whitesmoke;
     border-radius:5px;
 }
 
 h1{
+    font-size:31px;
     text-align:center;
+    padding-top:10px;
 }
 
+
 .gallery{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 2;
-    border-radius:20px;
-    margin-top:10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:90%;
+    margin:0 auto; 
+    flex-wrap: wrap;
+    padding:3px;
+    margin-top:5px;
 }
+
+.gallery-item{
+    display: block;
+    flex-basis: 100%;
+    padding:5px;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    border:2px solid gray;
+    max-width: 80px;
+    border-radius:10%;
+    margin:5px;
+    cursor:pointer;
+  } 
+
+
+
+  @media only screen and (min-width:640px){
+    .gallery-item{
+        flex-basis: 50%;
+    }
+  }
+
+  @media only screen and (min-width:940px){
+    .gallery-item{
+        flex-basis: 33.333%;
+    }
+  }
+
+  @media only screen and (min-width:1280px){
+    .gallery{
+        width: 100%;
+    }
+    .gallery-item{
+        flex-basis: 16%;
+    }
+  }
 
 .upload{
     position: relative;
@@ -78,10 +118,11 @@ input + label{
  
 .preview{
     max-width: 200px;
-    height: 192px;
+    height: auto;
+    width:500px;
     position: relative;
     border-radius: 100%;
-    border: 6px solid #F8F8F8;
+    border: 6px solid lightgrey;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
     background-color:lightsteelblue;
     overflow: hidden;
@@ -104,16 +145,7 @@ img{
     width:200px;
 }
 
-.gallery-item{
-    height:80px;
-    width:80px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
-    border-radius:10%;
-  } 
-
-  h2{
+h2{
       text-transform: uppercase;
       text-align: center;
-  }
+}
