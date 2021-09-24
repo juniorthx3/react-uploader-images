@@ -27,7 +27,6 @@ const upload=multer({
     fileFilter:fileFilter
 });  
 
-
 router.get("/", (req, res)=>{
     Photos.find((err, data)=>{
        if(err){
