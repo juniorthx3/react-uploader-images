@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon src/app.js",
+    "start":"./node_modules/.bin/netlify-lambda serve src",
+    "build":"./node_modules/.bin/netlify-lambda serve src"
   },
   "keywords": [],
   "author": "Junior MILIEN",
