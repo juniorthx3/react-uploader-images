@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start":"concurrently \"cd rest-api-photos && npm run dev\" \"cd uploader && npm start\" "
+    "start": "concurrently \"cd rest-api-photos && npm run dev\" \"cd uploader && npm start\" "
   },
   "repository": {
     "type": "git",
