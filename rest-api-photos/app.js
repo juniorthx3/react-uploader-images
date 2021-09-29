@@ -4,10 +4,10 @@ const bodyParser=require("body-parser");
 const pictureRoutes=require("./routes/pictures");
 const morgan=require("morgan");
 require("./models/dbConfig");
-
-const PORT=process.env.PORT || 4000;
+require("dotenv").config();
 
 const app=express();
+const PORT=process.env.PORT || 8080;
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -33,6 +33,7 @@ app.use((error, req, res, next)=>{
 app.listen(PORT, ()=>{
     console.log(`Server started on localhost port ${PORT}`)
 });
+
 
 module.exports=app;
 
