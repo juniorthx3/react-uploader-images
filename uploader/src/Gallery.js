@@ -15,17 +15,17 @@ const Gallery = ({title, selectedImage}) => {
       <React.Fragment>
             <h1>{title}</h1>
             <div className="gallery">
-              {
+              {/* {
                 image.map(photo=>{
                   return  <img className="gallery-item" alt="" src={photo.url} key={photo._id} />
                 })
-              }
-                {/* <img className="gallery-item" alt="" src={image1} />
+              } */}
                 <img className="gallery-item" alt="" src={image1} />
                 <img className="gallery-item" alt="" src={image1} />
                 <img className="gallery-item" alt="" src={image1} />
                 <img className="gallery-item" alt="" src={image1} />
-                <img className="gallery-item" alt="" src={image1} /> */}
+                <img className="gallery-item" alt="" src={image1} />
+                <img className="gallery-item" alt="" src={image1} />
            </div>
       </React.Fragment>
     )
