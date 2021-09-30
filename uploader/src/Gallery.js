@@ -7,10 +7,8 @@ const Gallery = ({title, selectedImage}) => {
   const [image, setImage] = useState([]);
   useEffect(()=>{
     axios.get('http://localhost:4000/pictures')
-         .then(response=>{
-           setImage(response.data);
-         })
-  })
+         .then(response=>setImage(response.data));
+  },[])
     return (
       <React.Fragment>
             <h1>{title}</h1>
