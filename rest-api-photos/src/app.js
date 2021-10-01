@@ -17,8 +17,8 @@ const router=express.Router();
 router.get("/", (req, res)=>{
     res.json({"message":"API to get all uploaded images. Add /pictures to the URL to see all informations about uploading images."})
 });
-app.use('/', router);
-app.use("/pictures", pictureRoutes); 
+app.use('/.netlify/functions/app', router);
+app.use("/.netlify/functions/app/pictures", pictureRoutes); 
 
 
 // app.use((req, res, next)=>{
