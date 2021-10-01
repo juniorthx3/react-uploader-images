@@ -42,7 +42,7 @@ router.post("/", upload.single('photoImage'), (req, res)=>{
     if(req.file=== undefined) return res.send("Séelectionner une photo")
     const record=new Photos({
         filename: req.file.filename,
-        url: "http://localhost:4000/pictures/uploads/" + req.file.filename,
+        url: "https://rest-api-photos.netlify.app/.netlify/functions/app/pictures/uploads/" + req.file.filename,
         mimetype:req.file.mimetype,
         encoding:req.file.encoding,
         size:req.file.size

@@ -19,7 +19,7 @@ const Uploader = ({selectedImage, setSelectedImage}) => {
         const formData=new FormData();
         formData.append('photoImage', e.target.files[0]);
 
-        axios.post('http://localhost:4000/pictures', formData, {
+        axios.post('https://rest-api-photos.netlify.app/.netlify/functions/app/pictures', formData, {
             onUploadProgress: progressEvent=>{
                 console.log("Upload Progress: " + Math.round(progressEvent.loaded / progressEvent.total * 100) + '%');
             }

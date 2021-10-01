@@ -6,7 +6,7 @@ import image1 from "./cat1.jpg"
 const Gallery = ({title, selectedImage}) => {
   const [image, setImage] = useState([]);
   useEffect(()=>{
-    axios.get('http://localhost:4000/pictures')
+    axios.get('https://rest-api-photos.netlify.app/.netlify/functions/app/pictures')
          .then(response=>setImage(response.data));
   },[])
     return (
