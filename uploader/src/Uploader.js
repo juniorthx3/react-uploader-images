@@ -17,9 +17,9 @@ const Uploader = ({selectedImage, setSelectedImage}) => {
         setSelectedImage(e.target.files[0]);
         
         const formData=new FormData();
-        formData.append('photoImage', e.target.files[0]);
+        formData.append('photos', e.target.files[0]);
 
-        axios.post('https://rest-api-photos.netlify.app/.netlify/functions/app/pictures', formData, {
+        axios.post('/photo', formData, {
             onUploadProgress: progressEvent=>{
                 console.log("Upload Progress: " + Math.round(progressEvent.loaded / progressEvent.total * 100) + '%');
             }
@@ -30,7 +30,7 @@ const Uploader = ({selectedImage, setSelectedImage}) => {
     return (
         <div className="upload">
              <div className="edit">
-                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" onChange={uploadImage} />
+                <input type='file' id="imageUpload" name="photos" accept=".png, .jpg, .jpeg" onChange={uploadImage} />
                 <label htmlFor="imageUpload"></label>
             </div>
             <div className="preview">

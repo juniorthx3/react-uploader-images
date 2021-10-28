@@ -3,7 +3,7 @@ const mongoose=require("mongoose");
 const {Schema}=mongoose;
 
 const photoSchema=new Schema({
-   filename:{type:String, default:"Nouvelle Photo"},
+   filename:{type:String, required:true},
    mimetype:{type:String, required:true},
    url:{type:String, required:true},
    size:Number,
