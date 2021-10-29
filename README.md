@@ -40,7 +40,7 @@ git push
 # PROJECT OVERVIEW
 
 ## BACK END VIEW
-![Project pic](api.PNG)
+![Project pic](rest-api-photos.PNG)
 
 ## FRONT END VIEW
-![Project pic](frondend.PNG)
+![Project pic](uploader.PNG)

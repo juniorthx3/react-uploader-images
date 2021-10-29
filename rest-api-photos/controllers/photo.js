@@ -13,7 +13,7 @@ const showPhoto=(req, res)=>{
 };
 
 const uploadPhoto=(req, res)=>{
-    if(req.file === undefined) return res.send("Sélectionner une photo")
+    if(req.file === undefined) return res.send("Sélectionner une photo");
     const record=new Photos({
         filename: req.file.filename,
         url: "http://localhost:4000/photo/" + req.file.filename,
@@ -29,7 +29,6 @@ const uploadPhoto=(req, res)=>{
             res.send(data)
         }
     })
-    //res.redirect("/");
 }
 
 const showPhotoById=(req, res)=>{
