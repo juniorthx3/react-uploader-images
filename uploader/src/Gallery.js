@@ -6,7 +6,7 @@ import image1 from "./cat1.jpg"
 const Gallery = ({title, selectedImage}) => {
   const [image, setImage] = useState([]);
   useEffect(()=>{
-    axios.get('/pictures')
+    axios.get('/photo')
          .then(response=>setImage(response.data))
          .catch(err=>console.log(err));
   },[]);

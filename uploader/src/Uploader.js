@@ -19,12 +19,12 @@ const Uploader = ({selectedImage, setSelectedImage}) => {
         const formData=new FormData();
         formData.append('photos', e.target.files[0]);
 
-        axios.post('/photo', formData, {
-            onUploadProgress: progressEvent=>{
-                console.log("Upload Progress: " + Math.round(progressEvent.loaded / progressEvent.total * 100) + '%');
-            }
-          })
-            .then(response=>console.log(response));
+        axios.post('/photo', formData)
+             .then(response=>{
+                console.log(response);
+                alert("Image updated successfully!");
+                setSelectedImage(selectedImage);
+             });
         } 
 
     return (

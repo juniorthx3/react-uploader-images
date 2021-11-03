@@ -1,18 +1,18 @@
 const { Photos }=require("../models/photo");
 const mongoose=require("mongoose");
 const Grid=require("gridfs-stream");
+const upload=require("../middleware/upload");
 
-const showPhoto=(req, res)=>{
-    Photos.find((err, data)=>{
-        if(err){
-           console.log(err);
-        }else{
-          res.send(data);
-        }
-     });
+const showPhoto=async (req, res)=>{
+    try{
+       const results=await Photos.find();
+       res.status(200).json(results);
+    }catch(err){
+       res.status(404).json({message:err.message})
+    }
 };
 
-const uploadPhoto=(req, res)=>{
+const uploadPhoto=async (req, res)=>{
     if(req.file === undefined) return res.send("Sélectionner une photo");
     const record=new Photos({
         filename: req.file.filename,
@@ -22,13 +22,12 @@ const uploadPhoto=(req, res)=>{
         size:req.file.size,
         photos:req.file.photos
     })
-    record.save((err, data)=>{
-        if(err){
-            console.log(err);
-        }else{
-            res.send(data)
-        }
-    })
+    try{
+        await record.save();
+        res.status(201).json(record);
+    }catch(err){
+        res.status(409).json({message: err.message});
+    }
 }
 
 const showPhotoById=(req, res)=>{
@@ -42,34 +41,17 @@ const showPhotoById=(req, res)=>{
     })
 }
 
-let gfs;
-const connection=mongoose.connection;
-connection.once("open", function(){
-    gfs=Grid(connection.db, mongoose.mongo);
-    gfs.collection("photos");
 
-});
-
-const showPhotoByFilename=(req, res)=>{
-    // const {filename}=req.params;
-    // Photos.findOne({filename:filename},(err, data)=>{
-    //     if(err){
-    //        console.log(err);
-    //     }else{
-    //       res.send(data);
-    //     }
-    //  })
-    try{
-        const file=gfs.files.findOne({filename:req.params.filename});
-        const readStream=gfs.createReadStream(file);
-        readStream.pipe(res);
-    }
-    catch(error){
-         res.send("Not found");
-    }
+const showPhotos=(req, res)=>{
+ gfs.files.find().toArray((err, files)=>{
+     if(!files || files.length === 0){
+         return res.status(404).json({err:"No files exist"});
+     }
+     return res.json(files);
+ });
 }
 
 module.exports.showPhoto=showPhoto;
 module.exports.uploadPhoto=uploadPhoto;
 module.exports.showPhotoById=showPhotoById;
-module.exports.showPhotoByFilename=showPhotoByFilename;
+module.exports.showPhotos=showPhotos;
