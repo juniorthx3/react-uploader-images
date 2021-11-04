@@ -14,7 +14,7 @@ app.use(morgan('dev'));
 app.use("/photo", pictureRoutes);
 
 app.get("/", (req, res)=>{
-    res.send({"message":"API to get all uploaded images. Add /pictures to the URL to see all informations about uploading images."})
+    res.json({"message":"API pour obtenir toutes les images téléchargées. Ajoutez /photos à l'URL pour voir toutes les informations sur les images téléchargés."})
 });
 
 app.use((req, res, next)=>{

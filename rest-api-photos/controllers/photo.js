@@ -1,57 +1,43 @@
 const { Photos }=require("../models/photo");
 const mongoose=require("mongoose");
 const Grid=require("gridfs-stream");
-const upload=require("../middleware/upload");
+require("dotenv").config();
 
-const showPhoto=async (req, res)=>{
-    try{
-       const results=await Photos.find();
-       res.status(200).json(results);
-    }catch(err){
-       res.status(404).json({message:err.message})
-    }
-};
+//Create mongo Connection
+const connection=mongoose.createConnection(process.env.MONGO_URI);
 
-const uploadPhoto=async (req, res)=>{
-    if(req.file === undefined) return res.send("Sélectionner une photo");
-    const record=new Photos({
-        filename: req.file.filename,
-        url: "http://localhost:4000/photo/" + req.file.filename,
-        mimetype:req.file.mimetype,
-        encoding:req.file.encoding,
-        size:req.file.size,
-        photos:req.file.photos
-    })
-    try{
-        await record.save();
-        res.status(201).json(record);
-    }catch(err){
-        res.status(409).json({message: err.message});
-    }
-}
+//Init GFS
+let gfs;
 
-const showPhotoById=(req, res)=>{
-    const {id}=req.params;
-    Photos.findById(id, (err, data)=>{
-        if(err){
-            console.log(err);
-        }else{
-            res.send(data);
-        }
-    })
-}
-
+connection.once("open", ()=>{
+    //Init Stream
+    gfs=Grid(connection.db, mongoose.mongo);
+    gfs.collection("photos");
+})
 
 const showPhotos=(req, res)=>{
- gfs.files.find().toArray((err, files)=>{
-     if(!files || files.length === 0){
-         return res.status(404).json({err:"No files exist"});
-     }
-     return res.json(files);
- });
+    gfs.files.find().toArray((err, files)=>{
+      if(!files || files.length === 0){
+          return res.status(404).json({message:"Pas de photos enregistrées dans la base de données"});  
+      } 
+      return res.json(files);
+    })
+};
+
+const uploadPhoto=(req, res)=>{
+    if(req.file === undefined) return res.json({message:"Sélectionner une photo"});
+    res.redirect("/photo");
 }
 
-module.exports.showPhoto=showPhoto;
-module.exports.uploadPhoto=uploadPhoto;
-module.exports.showPhotoById=showPhotoById;
+const searchPhotoByName=(req, res)=>{
+    gfs.files.findOne({filename:req.params._id}, (err, file)=>{
+        if(!file || file.length === 0){
+            return res.status(404).json({message:"Ce photo n'existe pas dans la base de données"});  
+        } 
+        return res.json(file);
+    })
+}
+
 module.exports.showPhotos=showPhotos;
+module.exports.uploadPhoto=uploadPhoto;
+module.exports.searchPhotoByName=searchPhotoByName
