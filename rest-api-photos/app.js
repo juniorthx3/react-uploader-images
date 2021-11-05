@@ -2,8 +2,10 @@ const express=require("express");
 const cors=require("cors");
 const pictureRoutes=require("./routes/photo");
 const morgan=require("morgan");
-require("./models/dbConfig");
+const dbConnection=require("./models/dbConfig");
+require("dotenv").config();
 
+dbConnection();
 const app=express();
 const PORT=process.env.PORT || 4000; 
 
@@ -14,7 +16,11 @@ app.use(morgan('dev'));
 app.use("/photo", pictureRoutes);
 
 app.get("/", (req, res)=>{
-    res.json({"message":"API pour obtenir toutes les images téléchargées. Ajoutez /photos à l'URL pour voir toutes les informations sur les images téléchargés."})
+    res.json({"Summary":"API to get all properties of uploaded images",
+              "Quick access to the properties of uploaded images":"http://localhost:4000/photo",
+              "Display property of a specific image":"http://localhost:4000/photo/view/[filename]",
+              "Display image on browser":"http://localhost:4000/photo/display/[filename]"
+            });
 });
 
 app.use((req, res, next)=>{
