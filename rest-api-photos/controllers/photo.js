@@ -16,8 +16,8 @@ connection.once("open", ()=>{
 })
 
 
-const showPhotos=(req, res)=>{
-    gfs.files.find().toArray((err, files)=>{
+const showPhotos=async(req, res)=>{
+    await gfs.files.find().toArray((err, files)=>{
       if(!files || files.length === 0){
           return res.status(404).json({message:"No data currently in the database"});  
       } 
@@ -30,8 +30,8 @@ const uploadPhoto=(req, res)=>{
     res.redirect("/photo");
 }
 
-const searchPhotoByName=(req, res)=>{
-    gfs.files.findOne({filename:req.params.filename}, (err, file)=>{
+const searchPhotoByName=async (req, res)=>{
+    await gfs.files.findOne({filename:req.params.filename}, (err, file)=>{
         if(!file || file.length === 0){
             return res.status(404).json({message:"File not found"});  
         } 
@@ -39,8 +39,8 @@ const searchPhotoByName=(req, res)=>{
     })
 }
 
-const displayPhoto=(req, res)=>{
-    gfs.files.findOne({filename:req.params.filename}, (err, file)=>{
+const displayPhoto=async (req, res)=>{
+    await gfs.files.findOne({filename:req.params.filename}, (err, file)=>{
         if(!file || file.length === 0){
             return res.status(404).json({message:"File not found"});  
         } 
