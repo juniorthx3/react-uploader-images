@@ -18,8 +18,8 @@ app.use("/photo", pictureRoutes);
 app.get("/", (req, res)=>{
     res.json({"Summary":"API to get all properties of uploaded images",
               "Quick access to the properties of uploaded images":"http://localhost:4000/photo",
-              "Display property of a specific image":"http://localhost:4000/photo/view/[filename]",
-              "Display image on browser":"http://localhost:4000/photo/display/[filename]"
+              "Display property of a specific image":"http://localhost:4000/photo/view/[ID]",
+              "Display image on browser":"http://localhost:4000/photo/display/[ID]"
             });
 });
 
