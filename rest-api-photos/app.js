@@ -16,15 +16,17 @@ app.use(morgan('dev'));
 app.use("/photo", pictureRoutes);
 
 app.get("/", (req, res)=>{
-    res.json({"Summary":"API to get all properties of uploaded images",
-              "Quick access to the properties of uploaded images":"http://localhost:4000/photo",
-              "Display property of a specific image":"http://localhost:4000/photo/view/[ID]",
-              "Display image on browser":"http://localhost:4000/photo/display/[ID]"
+    res.json({"Summary":"API to get all uploaded images",
+              "Retrieve metadata of all photos stored in the database":"http://localhost:4000/photo",
+              "Retrieve metadata of one specific photo using the ID":"http://localhost:4000/photo/view/id/[ID]",
+              "Streaming the file with the given ID from GridFS":"http://localhost:4000/photo/display/id/[ID]",
+              "Retrieve metadata of one specific photo using the filename":"http://localhost:4000/photo/view/name/[filename]",
+              "Streaming the file with the given name from GridFS":"http://localhost:4000/photo/display/name/[filename]",
             });
 });
 
 app.use((req, res, next)=>{
-    const error=new Error('Page Not found...');
+    const error=new Error('Invalid URL parameter...');
     error.status=404;
     next(error);
 })
