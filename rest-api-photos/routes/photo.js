@@ -1,6 +1,6 @@
 const express=require("express");
 const router=express.Router();
-const {showPhotos, uploadPhoto, searchPhotoById, displayPhotoById, searchPhotoByFilename, displayPhotoByFilename, deletePhotoById, deletePhotoByFilename}=require("../controllers/photo");
+const {showPhotos, uploadPhoto, searchPhotoById, displayPhotoById, searchPhotoByFilename, displayPhotoByFilename, deletePhotoById}=require("../controllers/photo");
 const upload=require("../middleware/upload");
 
 //Routes
@@ -10,7 +10,6 @@ router.get("/view/id/:id", searchPhotoById);
 router.delete("/view/id/:id", deletePhotoById);
 router.get("/display/id/:id", displayPhotoById);
 router.get("/view/name/:filename", searchPhotoByFilename);
-router.delete("/view/name/:filename", deletePhotoByFilename);
 router.get("/display/name/:filename", displayPhotoByFilename);
 
 

@@ -21,7 +21,7 @@ app.get("/", (req, res)=>{
               "Retrieve metadata of one specific photo using the ID":"http://localhost:4000/photo/view/id/[ID]",
               "Streaming the file with the given ID from GridFS":"http://localhost:4000/photo/display/id/[ID]",
               "Retrieve metadata of one specific photo using the filename":"http://localhost:4000/photo/view/name/[filename]",
-              "Streaming the file with the given name from GridFS":"http://localhost:4000/photo/display/name/[filename]",
+              "Streaming the file with the given name from GridFS":"http://localhost:4000/photo/display/name/[filename]"
             });
 });
 

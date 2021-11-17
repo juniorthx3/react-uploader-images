@@ -53,7 +53,7 @@ const deletePhotoById=async ({params: {id}}, res)=>{
     const _id=new mongoose.Types.ObjectId(id);
     await gfs.delete(_id, err=>{
         if(err) return res.status(500).json({message:'Image deletion error'});
-        res.json({message:"Delete Image successfully!"});
+        res.json({message:"Image are deleted succesfully!"});
     });
 };
 
@@ -76,13 +76,6 @@ const displayPhotoByFilename=async (req, res)=>{
     gfs.openDownloadStreamByName(req.params.filename).pipe(res);
 };
 
-const deletePhotoByFilename=async (req, res)=>{
-    gfs.delete({filename:req.params.filename}, err=>{
-        if(err) return res.status(500).json({message:"Image Deletion Error"});
-        res.json({message:"Delete Image Successfully!"});
-    })
-};
-
 module.exports.showPhotos=showPhotos;
 module.exports.uploadPhoto=uploadPhoto;
 module.exports.searchPhotoById=searchPhotoById;
@@ -90,4 +83,3 @@ module.exports.displayPhotoById=displayPhotoById;
 module.exports.searchPhotoByFilename=searchPhotoByFilename;
 module.exports.displayPhotoByFilename=displayPhotoByFilename;
 module.exports.deletePhotoById=deletePhotoById;
-module.exports.deletePhotoByFilename=deletePhotoByFilename;
